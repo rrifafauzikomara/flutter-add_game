@@ -24,28 +24,13 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void _openFlame() {
-    //
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextButton(
-              onPressed: _openUnity,
-              child: const Text("Unity"),
-            ),
-            const SizedBox(height: 20),
-            TextButton(
-              onPressed: _openFlame,
-              child: const Text("Flame"),
-            ),
-          ],
+      body: Center(
+        child: TextButton(
+          onPressed: _openUnity,
+          child: const Text("Open Unity"),
         ),
       ),
     );

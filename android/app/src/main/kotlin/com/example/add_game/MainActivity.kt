@@ -14,14 +14,16 @@ class MainActivity: FlutterActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         GeneratedPluginRegister.registerGeneratedPlugins(FlutterEngine(this@MainActivity))
-        MethodChannel(flutterEngine?.dartExecutor, methodChannel).setMethodCallHandler{call, result ->
-            if (call.method.equals("goToUnityActivity")) {
-                val arg = call.arguments as Map<String, Any>
-                val message = arg.getValue("greeting") as String
-                goToUnityActivity(message)
-                result.success(null)
-            } else {
-                result.notImplemented()
+        flutterEngine?.dartExecutor?.let {
+            MethodChannel(it, methodChannel).setMethodCallHandler{ call, result ->
+                if (call.method.equals("goToUnityActivity")) {
+                    val arg = call.arguments as Map<String, Any>
+                    val message = arg.getValue("greeting") as String
+                    goToUnityActivity(message)
+                    result.success(null)
+                } else {
+                    result.notImplemented()
+                }
             }
         }
     }
